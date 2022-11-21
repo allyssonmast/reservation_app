@@ -43,7 +43,7 @@ class HomeView extends GetView<TablesController> {
                       tables: tables,
                       customers: customers,
                       onTap: (table, customer) => controller.onTap(
-                          tables: tables, customers: customers),
+                          tables: tables, customers: customers,index: index),
                     );
                   },
                   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(

@@ -43,9 +43,8 @@ class TablesController extends GetxController {
     getReservationsRemote();
     getCustomersRemote();
 
-    print(listTables.length);
-    if(listTables.isNotEmpty) {
-      hasData.value=true;
+    if (listTables.isNotEmpty) {
+      hasData.value = true;
       isLoading.value = false;
       return;
     }
@@ -91,11 +90,14 @@ class TablesController extends GetxController {
       return listCustomers
           .firstWhereOrNull((element) => element.id == reservation.userId);
     }
-
+    update();
     return customers;
   }
 
-  void onTap({required Tables tables, required Customers? customers}) {
+  void onTap(
+      {required Tables tables,
+      required Customers? customers,
+      required int index}) {
     if (customers != null) {
       showDialog(
           context: Get.context!,
@@ -105,7 +107,13 @@ class TablesController extends GetxController {
               actions: [
                 TextButton(
                     onPressed: () {
-                      Get.back();
+                      Reservation reservation = listReservations.firstWhere(
+                          (element) => element.tableId == tables.id);
+
+
+                      listReservations.remove(reservation);
+                      //saveReservations();
+                      //Get.back();
                     },
                     child: const Text('Cancel'))
               ],
@@ -134,16 +142,26 @@ class TablesController extends GetxController {
     await sharedPreferences.setStringList(RESERVATION_REMOTE, usrList);
   }
 
-  void getTablesRemote()  {
+  void getTablesRemote() {
     List<String>? listString = sharedPreferences.getStringList(TABLES_REMOTE);
-    if(listString!=null) listTables.value = List<Tables>.from(listString.map((x) => tableFromJson(x)));
+    if (listString != null)
+      listTables.value =
+          List<Tables>.from(listString.map((x) => tableFromJson(x)));
   }
-  void getReservationsRemote()  {
-    List<String>? listString = sharedPreferences.getStringList(RESERVATION_REMOTE);
-    if(listString!=null) listReservations.value = List<Reservation>.from(listString.map((x) => reservationFromJson(x)));
+
+  void getReservationsRemote() {
+    List<String>? listString =
+        sharedPreferences.getStringList(RESERVATION_REMOTE);
+    if (listString != null)
+      listReservations.value =
+          List<Reservation>.from(listString.map((x) => reservationFromJson(x)));
   }
-  void getCustomersRemote()  {
-    List<String>? listString = sharedPreferences.getStringList(CUSTOMERES_REMOTE);
-    if(listString!=null) listCustomers.value = List<Customers>.from(listString.map((x) => customersFromJson(x)));
+
+  void getCustomersRemote() {
+    List<String>? listString =
+        sharedPreferences.getStringList(CUSTOMERES_REMOTE);
+    if (listString != null)
+      listCustomers.value =
+          List<Customers>.from(listString.map((x) => customersFromJson(x)));
   }
 }
