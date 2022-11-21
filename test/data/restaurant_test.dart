@@ -1,8 +1,8 @@
 
 import 'package:flutter_mobile_engineer/app/data/restaurant_repository.dart';
-import 'package:flutter_mobile_engineer/app/modules/home/models/customers.dart';
-import 'package:flutter_mobile_engineer/app/modules/home/models/reservations.dart';
-import 'package:flutter_mobile_engineer/app/modules/home/models/tables.dart';
+import 'package:flutter_mobile_engineer/app/modules/tables//models/customers.dart';
+import 'package:flutter_mobile_engineer/app/modules/tables//models/reservations.dart';
+import 'package:flutter_mobile_engineer/app/modules/tables//models/tables.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

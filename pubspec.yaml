@@ -8,7 +8,7 @@ environment:
 dependencies: 
   cupertino_icons: ^1.0.2
   get: 4.6.5
-  connectivity:
+  connectivity_plus: ^3.0.2
   http:
   equatable:
   shared_preferences:
