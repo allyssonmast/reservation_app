@@ -14,8 +14,8 @@ class Reservation extends Equatable{
     required this.id,
   });
 
- final String userId;
-  final String tableId;
+ final int userId;
+  final int tableId;
   final int id;
 
   factory Reservation.fromJson(Map<String, dynamic> json) => Reservation(

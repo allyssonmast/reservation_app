@@ -15,22 +15,26 @@ class Customers extends Equatable{
     required this.firstName,
     required this.lastName,
     required this.imageUrl,
+    required this.id
   });
 
   final String firstName;
   final String lastName;
   final String imageUrl;
+  final int id;
 
   factory Customers.fromJson(Map<String, dynamic> json) => Customers(
         firstName: json["first_name"],
         lastName: json["last_name"],
         imageUrl: json["image_url"],
+        id: json["id"],
       );
 
   Map<String, dynamic> toJson() => {
         "first_name": firstName,
         "last_name": lastName,
         "image_url": imageUrl,
+        "id": id,
       };
 
   @override

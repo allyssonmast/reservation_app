@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobile_engineer/app/modules/tables/models/customers.dart';
+import 'package:flutter_mobile_engineer/app/modules/tables/models/tables.dart';
+import 'package:flutter_mobile_engineer/app/modules/tables/views/widget/table_adapter.dart';
 
 import 'package:get/get.dart';
 
@@ -10,15 +13,39 @@ class HomeView extends GetView<TablesController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HomeView'),
+        backgroundColor: Colors.white,
+        title: const Text(
+          'Tables',
+          style: TextStyle(color: Colors.black),
+        ),
         centerTitle: true,
       ),
-      body: Center(
-        child: Text(
-          'HomeView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+      body: Obx(() => controller.isLoading.isTrue
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : controller.hasData.isFalse
+              ? Center(
+                  child: TextButton.icon(
+                      onPressed: controller.feachtData,
+                      icon: const Icon(Icons.update),
+                      label: const Text('Try again')),
+                )
+              : GridView.builder(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  itemCount: controller.listTables.length,
+                  itemBuilder: (_, index) {
+                    Tables tables = controller.listTables[index];
+                    Customers? customers = controller.hasCustomers(tables.id);
+                    return TableAdapter(tables: tables, customers: customers);
+                  },
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                      childAspectRatio: 1.2,
+                      crossAxisSpacing: 8,
+                      mainAxisSpacing: 8,
+                      maxCrossAxisExtent: 240,
+                      mainAxisExtent: 180),
+                )),
     );
   }
 }

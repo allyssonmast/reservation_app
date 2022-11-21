@@ -34,7 +34,7 @@ void main(){
 
   test('should return remote List<Customers> data when called', () async {
     List<Customers> listCustomers=[];
-    Customers customers =const Customers(firstName: 'firstName', lastName: 'lastName', imageUrl: 'imageUrl');
+    Customers customers =const Customers(firstName: 'firstName', lastName: 'lastName', imageUrl: 'imageUrl',id: 1);
 
     listCustomers.add(customers);
     listCustomers.add(customers);
@@ -50,7 +50,7 @@ void main(){
 
   test('should return remote data when the call is sucessfull', () async {
     List<Reservation> listReservations=[];
-    Reservation tables =const Reservation(userId: 'userId', tableId: 'tableId', id: 1);
+    Reservation tables =const Reservation(userId: 1, tableId: 1, id: 1);
 
     listReservations.add(tables);
     listReservations.add(tables);
