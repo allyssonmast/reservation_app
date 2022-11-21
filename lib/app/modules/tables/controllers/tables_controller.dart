@@ -27,7 +27,7 @@ class TablesController extends GetxController {
     feachtData();
   }
 
-  void feachtData() async {
+  Future feachtData() async {
     isLoading.value = true;
     hasData.value = true;
     if (!await isConnected()) {
@@ -38,7 +38,9 @@ class TablesController extends GetxController {
       showDialog(
           context: Get.context!,
           builder: (_) {
-            return const DialogNoConnection();
+            return const DialogNoConnection(
+              key: Key('No_internet_connection_dialog_is_visible'),
+            );
           });
 
       return;
@@ -76,16 +78,18 @@ class TablesController extends GetxController {
           context: Get.context!,
           builder: (_) {
             return AlertDialog(
-              content:const Text('Cancel Reservation?'),
+              content: const Text('Cancel Reservation?'),
               actions: [
-                TextButton(onPressed: () {
-                  Get.back();
-                }, child: const Text('Cancel'))
+                TextButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    child: const Text('Cancel'))
               ],
             );
           });
     } else {
-      Get.toNamed(Routes.CUSTOMERS,arguments: tables);
+      Get.toNamed(Routes.CUSTOMERS, arguments: tables);
     }
   }
 }

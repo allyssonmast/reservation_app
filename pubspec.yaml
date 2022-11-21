@@ -11,12 +11,15 @@ dependencies:
   connectivity_plus: ^3.0.2
   http:
   equatable:
+
   shared_preferences:
   flutter: 
     sdk: flutter
 
 dev_dependencies: 
   flutter_lints: ^2.0.0
+  integration_test:
+    sdk: flutter
   mocktail:
   flutter_test: 
     sdk: flutter
