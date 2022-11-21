@@ -1,16 +1,24 @@
 # flutter_mobile_engineer
 
-A new Flutter project.
+Mobile Android Engineer Coding Challenge.
 
 ## Getting Started
 
 This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Stack used
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Request Api -> HTTP.client
+Software architectures -> MVC
+State Management -> GetX
+Dependency Injection via Bindings
+Unit Tests (Repository)
+Integration test
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+The purpose of this repository was to show the integration tests of the challenge. 
+Getx and MVC were chosen because they are easy and quick to implement, 
+despite not being recommended for use in large apps. As a way to improve this test, 
+it would be possible to replace MVC with Clean architectures and GetX with BLoc/Provider, 
+which would need a little more time.
+
+I am grateful for the opportunity to showcase my skills.
