@@ -3,6 +3,7 @@ import 'package:flutter_mobile_engineer/app/data/restaurante_repository_I.dart';
 import 'package:flutter_mobile_engineer/app/modules/tables/models/customers.dart';
 import 'package:flutter_mobile_engineer/app/modules/tables/models/reservations.dart';
 import 'package:flutter_mobile_engineer/app/modules/tables/models/tables.dart';
+import 'package:flutter_mobile_engineer/app/routes/app_pages.dart';
 import 'package:flutter_mobile_engineer/app/utils/check_internet.dart';
 import 'package:get/get.dart';
 
@@ -28,7 +29,7 @@ class TablesController extends GetxController {
 
   void feachtData() async {
     isLoading.value = true;
-    hasData.value=true;
+    hasData.value = true;
     if (!await isConnected()) {
       hasData.value = false;
       isLoading.value = false;
@@ -67,5 +68,24 @@ class TablesController extends GetxController {
     }
 
     return customers;
+  }
+
+  void onTap({required Tables tables, required Customers? customers}) {
+    if (customers != null) {
+      showDialog(
+          context: Get.context!,
+          builder: (_) {
+            return AlertDialog(
+              content:const Text('Cancel Reservation?'),
+              actions: [
+                TextButton(onPressed: () {
+                  Get.back();
+                }, child: const Text('Cancel'))
+              ],
+            );
+          });
+    } else {
+      Get.toNamed(Routes.CUSTOMERS,arguments: tables);
+    }
   }
 }

@@ -37,7 +37,12 @@ class HomeView extends GetView<TablesController> {
                   itemBuilder: (_, index) {
                     Tables tables = controller.listTables[index];
                     Customers? customers = controller.hasCustomers(tables.id);
-                    return TableAdapter(tables: tables, customers: customers);
+                    return TableAdapter(
+                      tables: tables,
+                      customers: customers,
+                      onTap: (table, customer) => controller.onTap(
+                          tables: tables, customers: customers),
+                    );
                   },
                   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                       childAspectRatio: 1.2,
