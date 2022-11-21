@@ -11,7 +11,6 @@ dependencies:
   connectivity_plus: ^3.0.2
   http:
   equatable:
-
   shared_preferences:
   flutter: 
     sdk: flutter

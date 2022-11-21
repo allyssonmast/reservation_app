@@ -20,4 +20,13 @@ void main() {
   expect(result, false);
   });
 
+  test('save data localy', () async{
+
+  when(() => controller.isConnected())
+      .thenAnswer((invocation) async => false);
+
+   var result= await controller.isConnected();
+  expect(result, false);
+  });
+
 }

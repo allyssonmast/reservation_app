@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobile_engineer/app/data/restaurante_repository_I.dart';
 import 'package:flutter_mobile_engineer/app/modules/tables/models/customers.dart';
@@ -6,6 +8,7 @@ import 'package:flutter_mobile_engineer/app/modules/tables/models/tables.dart';
 import 'package:flutter_mobile_engineer/app/routes/app_pages.dart';
 import 'package:flutter_mobile_engineer/app/utils/check_internet.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../views/widget/dialog_no_connection.dart';
 
@@ -14,6 +17,10 @@ class TablesController extends GetxController {
 
   TablesController(this.repository);
 
+  String TABLES_REMOTE = 'TABLES_DATA';
+  String RESERVATION_REMOTE = 'RESERVATION_REMOTE';
+  String CUSTOMERES_REMOTE = 'CUSTOMERES_REMOTE';
+  late SharedPreferences sharedPreferences;
   var listTables = RxList<Tables>();
   var listReservations = RxList<Reservation>();
   var listCustomers = RxList<Customers>();
@@ -30,6 +37,16 @@ class TablesController extends GetxController {
   Future feachtData() async {
     isLoading.value = true;
     hasData.value = true;
+    sharedPreferences = await SharedPreferences.getInstance();
+
+    getTablesRemote();
+    getReservationsRemote();
+    getCustomersRemote();
+
+    if(listTables.isNotEmpty) {
+      isLoading.value = false;
+      return;
+    }
     if (!await isConnected()) {
       hasData.value = false;
       isLoading.value = false;
@@ -45,9 +62,13 @@ class TablesController extends GetxController {
 
       return;
     }
+
     await getTables;
+    saveTables();
     await getCustomers;
+    saveCustomers();
     await getReservations;
+    saveReservations();
     isLoading.value = false;
     update();
   }
@@ -91,5 +112,36 @@ class TablesController extends GetxController {
     } else {
       Get.toNamed(Routes.CUSTOMERS, arguments: tables);
     }
+  }
+
+  Future saveCustomers() async {
+    List<String> usrList =
+        listCustomers.map((item) => jsonEncode(item.toJson())).toList();
+    await sharedPreferences.setStringList(CUSTOMERES_REMOTE, usrList);
+  }
+
+  Future saveTables() async {
+    List<String> usrList =
+        listTables.map((item) => jsonEncode(item.toJson())).toList();
+    await sharedPreferences.setStringList(TABLES_REMOTE, usrList);
+  }
+
+  Future saveReservations() async {
+    List<String> usrList =
+        listReservations.map((item) => jsonEncode(item.toJson())).toList();
+    await sharedPreferences.setStringList(RESERVATION_REMOTE, usrList);
+  }
+
+  void getTablesRemote()  {
+    List<String>? listString = sharedPreferences.getStringList(TABLES_REMOTE);
+    if(listString!=null) listTables.value = List<Tables>.from(listString.map((x) => tableFromJson(x)));
+  }
+  void getReservationsRemote()  {
+    List<String>? listString = sharedPreferences.getStringList(RESERVATION_REMOTE);
+    if(listString!=null) listReservations.value = List<Reservation>.from(listString.map((x) => reservationFromJson(x)));
+  }
+  void getCustomersRemote()  {
+    List<String>? listString = sharedPreferences.getStringList(CUSTOMERES_REMOTE);
+    if(listString!=null) listCustomers.value = List<Customers>.from(listString.map((x) => customersFromJson(x)));
   }
 }
