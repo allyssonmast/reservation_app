@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobile_engineer/app/modules/tables/models/customers.dart';
 
 import 'package:get/get.dart';
 
@@ -10,15 +11,20 @@ class CustomersView extends GetView<CustomersController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('CustomersView'),
+        title: Text('Table ${controller.tables.id}'),
         centerTitle: true,
       ),
-      body: Center(
-        child: Text(
-          'CustomersView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+      body: ListView.builder(
+          itemCount: controller.listCustomer.length,
+          itemBuilder: (_, index) {
+            Customers customers = controller.listCustomer[index];
+            return ListTile(
+              leading: CircleAvatar(
+                backgroundImage: NetworkImage(customers.imageUrl),
+              ),
+              title: Text('${customers.firstName} ${customers.lastName}'),
+            );
+          }),
     );
   }
 }

@@ -2,8 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/customers/bindings/customers_binding.dart';
 import '../modules/customers/views/customers_view.dart';
-import '../modules/tables//bindings/home_binding.dart';
-import '../modules/tables//views/view/home_view.dart';
+import '../modules/tables/bindings/home_binding.dart';
+import '../modules/tables/views/view/home_view.dart';
 
 part 'app_routes.dart';
 
