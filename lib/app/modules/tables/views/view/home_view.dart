@@ -32,6 +32,7 @@ class HomeView extends GetView<TablesController> {
                       label: const Text('Try again')),
                 )
               : GridView.builder(
+                  key:const Key('List_of_tables_is_visible'),
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   itemCount: controller.listTables.length,
                   itemBuilder: (_, index) {

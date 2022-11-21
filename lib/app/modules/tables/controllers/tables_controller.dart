@@ -43,7 +43,9 @@ class TablesController extends GetxController {
     getReservationsRemote();
     getCustomersRemote();
 
+    print(listTables.length);
     if(listTables.isNotEmpty) {
+      hasData.value=true;
       isLoading.value = false;
       return;
     }
