@@ -12,6 +12,7 @@ class HomeView extends GetView<TablesController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: const Key('Screen_with_tables'),
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: const Text(

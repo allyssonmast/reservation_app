@@ -10,7 +10,9 @@ class CustomersView extends GetView<CustomersController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: const Key('Screen_with_users_tables'),
       appBar: AppBar(
+        elevation: 0,
         title: Text('Table ${controller.tables.id}'),
         centerTitle: true,
       ),
@@ -19,6 +21,7 @@ class CustomersView extends GetView<CustomersController> {
           itemBuilder: (_, index) {
             Customers customers = controller.listCustomer[index];
             return ListTile(
+              onTap:()=> controller.onTapCustomer(customers),
               leading: CircleAvatar(
                 backgroundImage: NetworkImage(customers.imageUrl),
               ),

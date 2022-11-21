@@ -32,10 +32,36 @@ void main() {
     /*When*/
     await tester.pumpAndSettle();
 
-    final dialog =
-        find.byKey(const Key('List_of_tables_is_visible'));
+    final dialog = find.byKey(const Key('List_of_tables_is_visible'));
 
     /*Then*/
     expect(dialog, findsOneWidget);
+  });
+
+  testWidgets('Table reservation', (tester) async {
+    /*Given*/
+    //App is opened after data was presented at least once
+    app.main();
+
+    /*When*/
+    await tester.pumpAndSettle();
+
+    var freeString = find.text('Free').first;
+
+    await tester.tap(freeString);
+    await tester.pumpAndSettle();
+
+    /*Then*/
+    var customerScreen = find.byKey(const Key('Screen_with_users_tables'));
+    expect(customerScreen, findsOneWidget);
+
+    /*When*/
+    var customer = find.byType(ListTile).first;
+    await tester.tap(customer);
+    await tester.pumpAndSettle();
+    var tableScreen = find.byKey(const Key('Screen_with_tables'));
+    await tester.pumpAndSettle();
+    /*Then*/
+    expect(tableScreen, findsOneWidget);
   });
 }
