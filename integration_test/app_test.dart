@@ -90,4 +90,21 @@ void main() {
     /*Then*/
     expect(tableScreen, findsOneWidget);
   });
+
+  testWidgets('Reserved table visual feedback', (tester) async {
+    /*Given*/
+    //App is open
+    app.main();
+
+    /*When*/
+    await tester.pumpAndSettle();
+
+    var customerImage = find.byKey(const Key('customer_image')).first;
+    var customerName = find.byKey(const Key('customer_name')).first;
+    await tester.pumpAndSettle();
+
+    /*Then*/
+    expect(customerImage, findsOneWidget);
+    expect(customerName, findsOneWidget);
+  });
 }

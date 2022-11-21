@@ -35,10 +35,11 @@ class TableAdapter extends StatelessWidget {
                 child: ListTile(
                   contentPadding: const EdgeInsets.symmetric(horizontal: 4),
                   leading: CircleAvatar(
+                    key: const Key('customer_image'),
                     backgroundImage: NetworkImage(customers!.imageUrl),
                     onBackgroundImageError: (_,__)=>Container(),
                   ),
-                  title: Text('${customers!.firstName} ${customers!.lastName}'),
+                  title: Text('${customers!.firstName} ${customers!.lastName}',key: const Key('customer_name'),),
                 ),
               )
             else
