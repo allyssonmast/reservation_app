@@ -1,23 +1,24 @@
+import 'package:flutter_mobile_engineer/app/modules/tables/controllers/tables_controller.dart';
+import 'package:flutter_mobile_engineer/app/modules/tables/models/customers.dart';
+import 'package:flutter_mobile_engineer/app/modules/tables/models/tables.dart';
 import 'package:get/get.dart';
 
 class CustomersController extends GetxController {
-  //TODO: Implement CustomersController
+  final TablesController tablesController;
 
-  final count = 0.obs;
+  CustomersController(this.tablesController);
+
+  final Tables tables = Get.arguments;
+
+  var listCustomer = RxList<Customers>();
+
   @override
   void onInit() {
     super.onInit();
+    getCustomers;
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  get getCustomers {
+    listCustomer.value = tablesController.listCustomers;
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
