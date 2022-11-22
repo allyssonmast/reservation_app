@@ -31,8 +31,8 @@ class CustomersController extends GetxController {
         id: tablesController.listReservations.last.id + 1);
 
     tablesController.listReservations.add(reservation);
+    tablesController.listTables.sort((a,b)=>a.id.compareTo(b.id));
     tablesController.saveReservations();
-    tablesController.update();
     Get.back();
   }
 }
