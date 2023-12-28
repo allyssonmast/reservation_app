@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobile_engineer/app/modules/tables/models/customers.dart';
-import 'package:flutter_mobile_engineer/app/modules/tables/models/tables.dart';
+
+import '../../domain/models/index.dart';
 
 class TableAdapter extends StatelessWidget {
   final Tables tables;

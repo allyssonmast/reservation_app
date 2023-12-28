@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobile_engineer/app/modules/tables/models/customers.dart';
-
+import '../../tables/domain/models/index.dart';
 import 'package:get/get.dart';
 
 import '../controllers/customers_controller.dart';

@@ -1,6 +1,4 @@
-import 'package:flutter_mobile_engineer/app/modules/tables/models/customers.dart';
-import 'package:flutter_mobile_engineer/app/modules/tables/models/reservations.dart';
-import 'package:flutter_mobile_engineer/app/modules/tables/models/tables.dart';
+import '../modules/tables/domain/models/index.dart';
 
 abstract class IRestaurantRepository {
   Future<List<Tables>> getTables();
