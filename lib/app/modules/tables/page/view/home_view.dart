@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobile_engineer/app/modules/tables/page/widget/drawer_widget.dart';
 import 'package:flutter_mobile_engineer/app/modules/tables/page/widget/table_adapter.dart';
 
 import 'package:get/get.dart';
@@ -13,11 +14,10 @@ class HomeView extends GetView<TablesController> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: const Key('Screen_with_tables'),
+      drawer: const DrawerWidget(),
       appBar: AppBar(
-        backgroundColor: Colors.white,
         title: const Text(
           'Tables',
-          style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
       ),

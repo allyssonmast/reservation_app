@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobile_engineer/app/helpers/theme/theme.dart';
 
 import 'package:get/get.dart';
 
@@ -11,7 +12,10 @@ void main() async {
   runApp(
     GetMaterialApp(
       title: "Application",
+      debugShowCheckedModeBanner: false,
       initialRoute: AppPages.INITIAL,
+      darkTheme: darkTheme,
+      theme: lightTheme,
       getPages: AppPages.routes,
     ),
   );

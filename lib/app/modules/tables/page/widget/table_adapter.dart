@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../../helpers/constants/padding_constants.dart';
+import '../../../../helpers/theme/text_theme.dart';
 import '../../domain/models/index.dart';
 
 class TableAdapter extends StatelessWidget {
@@ -13,37 +16,34 @@ class TableAdapter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: customers != null ? Colors.red : Colors.green,
+      color: customers != null ? kBadgeColor : context.theme.cardColor,
       child: InkWell(
         onTap: () => onTap(tables, customers),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              'Table Id',
-              style: TextStyle(fontSize: 24),
-            ),
-            Text(tables.id.toString()),
-            const SizedBox(
-              height: 8,
-            ),
+            const Text('Table Id', style: TextThemes.headline1),
+            Text(tables.id.toString(), style: TextThemes.bodyTextSub1),
             if (customers != null)
               Card(
-                color: Colors.white,
-                margin: const EdgeInsets.symmetric(horizontal: 8),
+                color: kSecondaryColor,
+                margin: paddingHorizonteMedium,
                 child: ListTile(
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 4),
+                  contentPadding: paddingHorizonteSmail,
                   leading: CircleAvatar(
                     key: const Key('customer_image'),
                     backgroundImage: NetworkImage(customers!.imageUrl),
-                    onBackgroundImageError: (_,__)=>Container(),
+                    onBackgroundImageError: (_, __) => Container(),
                   ),
-                  title: Text('${customers!.firstName} ${customers!.lastName}',key: const Key('customer_name'),),
+                  title: Text(
+                    '${customers!.firstName} ${customers!.lastName}',
+                    key: const Key('customer_name'),
+                  ),
                 ),
               )
             else
-              const Text('Free')
+              const Text('Free', style: TextThemes.bodyTextBold)
           ],
         ),
       ),
