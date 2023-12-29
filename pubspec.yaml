@@ -9,7 +9,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: 4.6.6
   connectivity_plus: ^3.0.2
-  http:
   equatable:
   shared_preferences:
   google_fonts:
